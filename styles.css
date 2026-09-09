@@ -640,11 +640,17 @@ img {
   background-color: var(--c-sand);
   border-radius: var(--border-radius);
   overflow: hidden;
+  padding: 2rem;
   border: 1px solid var(--c-sand-dark);
   box-shadow: var(--shadow-soft);
   transition: var(--transition);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+}
+
+.item-card:has(.card-image) {
+  padding: 0;
 }
 
 .item-card:hover {
