@@ -1602,6 +1602,13 @@ body.dark-theme .modal-close {
   color: var(--c-soft-gold);
 }
 
+body.dark-theme .whatsapp-tooltip {
+  background-color: #1a2720;
+  color: #eae3d2;
+  border-color: #e5c275;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
 body.dark-theme .theme-toggle {
   background-color: rgba(229, 194, 117, 0.2);
   border-color: var(--c-soft-gold);
