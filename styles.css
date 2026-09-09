@@ -33,6 +33,18 @@
   --border-radius: 12px;
 }
 
+/* Variables Override para Modo Oscuro Místico */
+body.dark-theme {
+  --c-sand: #111a15; /* Fondo principal verde-carbón nocturno */
+  --c-sand-light: #1a2720; /* Tarjetas y superficies */
+  --c-sand-dark: #2a3c31; /* Bordes y divisiones */
+  --c-charcoal: #eae3d2; /* Texto claro */
+  --c-forest-green: #b2d8c3; /* Verde salvia claro para títulos */
+  --c-terracotta: #e27b52; /* Terracota para acentos nocturnos */
+  --c-sage: #9db48f;
+  --c-soft-gold: #e5c275;
+}
+
 /* Reset y Normalización */
 *,
 *::before,
@@ -288,6 +300,29 @@ img {
   font-size: 0.85rem;
 }
 
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: rgba(198, 161, 91, 0.15);
+  border: 1px solid var(--c-soft-gold);
+  color: var(--c-soft-gold);
+  padding: 0.45rem 0.9rem;
+  border-radius: 20px;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.theme-toggle:hover {
+  background-color: var(--c-soft-gold);
+  color: var(--c-forest-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
 .mobile-toggle {
   display: none;
   background: none;
@@ -346,7 +381,9 @@ img {
   bottom: -80px;
   border-radius: 50%;
   border: 1px solid rgba(198, 161, 91, 0.35);
-  box-shadow: 0 0 12px rgba(198, 161, 91, 0.25), inset 0 0 8px rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 0 12px rgba(198, 161, 91, 0.25),
+    inset 0 0 8px rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(1px);
   animation: floatBubble var(--duration, 10s) infinite ease-in-out;
   animation-delay: var(--delay, 0s);
@@ -370,7 +407,8 @@ img {
     opacity: var(--bubble-opacity, 0.5);
   }
   100% {
-    transform: translateY(-115vh) translateX(calc(var(--drift, 30px) * -1)) scale(0.8);
+    transform: translateY(-115vh) translateX(calc(var(--drift, 30px) * -1))
+      scale(0.8);
     opacity: 0;
   }
 }
@@ -1445,4 +1483,82 @@ img {
   .whatsapp-tooltip {
     display: none; /* Ocultar el texto en móviles pequeños para no obstruir pantalla */
   }
+}
+
+/* ==========================================================================
+   ESTILOS ESPECÍFICOS DE COMPONENTES EN MODO OSCURO
+   ========================================================================== */
+body.dark-theme .navbar {
+  background-color: rgba(14, 22, 18, 0.95);
+  border-bottom-color: rgba(198, 161, 91, 0.25);
+}
+
+body.dark-theme .navbar.scrolled {
+  background-color: rgba(10, 16, 13, 0.98);
+}
+
+body.dark-theme .section-subtitle,
+body.dark-theme .card-desc,
+body.dark-theme .pillar p,
+body.dark-theme .badge-text span,
+body.dark-theme .service-card p,
+body.dark-theme .testimonial-text,
+body.dark-theme .faq-answer p {
+  color: #c1c9bf;
+}
+
+body.dark-theme .badge-text strong {
+  color: #eae3d2;
+}
+
+body.dark-theme .floating-badge {
+  background-color: #1a2720;
+  border-color: var(--c-soft-gold);
+}
+
+body.dark-theme .service-card.featured {
+  background-color: #1f3027;
+  border-color: var(--c-soft-gold);
+}
+
+body.dark-theme .card-tags span {
+  background-color: rgba(198, 161, 91, 0.15);
+  color: var(--c-soft-gold);
+}
+
+body.dark-theme .form-group input,
+body.dark-theme .form-group select,
+body.dark-theme .form-group textarea {
+  background-color: #111a15;
+  color: #eae3d2;
+  border-color: #2a3c31;
+}
+
+body.dark-theme .contacto-form-card {
+  background-color: #1a2720;
+  color: #eae3d2;
+}
+
+body.dark-theme .modal-content {
+  background-color: #1a2720;
+  color: #eae3d2;
+}
+
+body.dark-theme #modal-body p {
+  color: #c1c9bf !important;
+}
+
+body.dark-theme .modal-close {
+  color: var(--c-soft-gold);
+}
+
+body.dark-theme .theme-toggle {
+  background-color: rgba(229, 194, 117, 0.2);
+  border-color: var(--c-soft-gold);
+  color: var(--c-soft-gold);
+}
+
+body.dark-theme .theme-toggle:hover {
+  background-color: var(--c-soft-gold);
+  color: #111a15;
 }

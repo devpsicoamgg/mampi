@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initCategoryFilters();
   initFAQAccordion();
   initBubbles();
+  initThemeToggle();
 });
 
 /* 1. Navbar Scroll Effect & Active Section Tracking */
@@ -310,15 +311,15 @@ function initBubbles() {
 
   const bubbleCount = 28;
   const colors = [
-    'rgba(198, 161, 91, 0.28)', // Dorado suave
-    'rgba(125, 145, 112, 0.25)', // Verde salvia
-    'rgba(184, 92, 56, 0.22)',   // Terracota
-    'rgba(232, 223, 200, 0.35)'   // Arena / Beige
+    "rgba(198, 161, 91, 0.28)", // Dorado suave
+    "rgba(125, 145, 112, 0.25)", // Verde salvia
+    "rgba(184, 92, 56, 0.22)", // Terracota
+    "rgba(232, 223, 200, 0.35)", // Arena / Beige
   ];
 
   for (let i = 0; i < bubbleCount; i++) {
-    const bubble = document.createElement('div');
-    bubble.classList.add('bubble');
+    const bubble = document.createElement("div");
+    bubble.classList.add("bubble");
 
     const size = Math.floor(Math.random() * 45) + 12; // 12px a 57px
     const left = Math.random() * 100; // 0% a 100%
@@ -331,10 +332,10 @@ function initBubbles() {
     bubble.style.width = `${size}px`;
     bubble.style.height = `${size}px`;
     bubble.style.left = `${left}%`;
-    bubble.style.setProperty('--duration', `${duration}s`);
-    bubble.style.setProperty('--delay', `${delay}s`);
-    bubble.style.setProperty('--drift', `${drift}px`);
-    bubble.style.setProperty('--bubble-opacity', opacity);
+    bubble.style.setProperty("--duration", `${duration}s`);
+    bubble.style.setProperty("--delay", `${delay}s`);
+    bubble.style.setProperty("--drift", `${drift}px`);
+    bubble.style.setProperty("--bubble-opacity", opacity);
     bubble.style.background = `radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.65), ${color} 60%, transparent 100%)`;
 
     container.appendChild(bubble);
@@ -355,8 +356,8 @@ function createInteractiveBubbles(e, container) {
   const y = e.clientY - rect.top;
 
   for (let i = 0; i < 5; i++) {
-    const bubble = document.createElement('div');
-    bubble.classList.add('bubble');
+    const bubble = document.createElement("div");
+    bubble.classList.add("bubble");
 
     const size = Math.floor(Math.random() * 30) + 15;
     const duration = Math.random() * 3 + 3;
@@ -366,11 +367,11 @@ function createInteractiveBubbles(e, container) {
     bubble.style.height = `${size}px`;
     bubble.style.left = `${x + (Math.random() - 0.5) * 50}px`;
     bubble.style.top = `${y + (Math.random() - 0.5) * 50}px`;
-    bubble.style.bottom = 'auto';
-    bubble.style.setProperty('--duration', `${duration}s`);
-    bubble.style.setProperty('--delay', '0s');
-    bubble.style.setProperty('--drift', `${drift}px`);
-    bubble.style.setProperty('--bubble-opacity', '0.65');
+    bubble.style.bottom = "auto";
+    bubble.style.setProperty("--duration", `${duration}s`);
+    bubble.style.setProperty("--delay", "0s");
+    bubble.style.setProperty("--drift", `${drift}px`);
+    bubble.style.setProperty("--bubble-opacity", "0.65");
     bubble.style.background = `radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(198, 161, 91, 0.4) 60%, transparent 100%)`;
 
     container.appendChild(bubble);
@@ -378,5 +379,44 @@ function createInteractiveBubbles(e, container) {
     setTimeout(() => {
       bubble.remove();
     }, duration * 1000);
+  }
+}
+
+/* 8. Botón y Conmutador de Modo Claro / Modo Oscuro */
+function initThemeToggle() {
+  const themeToggle = document.getElementById("theme-toggle");
+  if (!themeToggle) return;
+
+  const savedTheme = localStorage.getItem("mampi-theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+    document.body.classList.add("dark-theme");
+    updateThemeButton(true);
+  } else {
+    document.body.classList.remove("dark-theme");
+    updateThemeButton(false);
+  }
+
+  themeToggle.addEventListener("click", () => {
+    const isDark = document.body.classList.toggle("dark-theme");
+    localStorage.setItem("mampi-theme", isDark ? "dark" : "light");
+    updateThemeButton(isDark);
+  });
+}
+
+function updateThemeButton(isDark) {
+  const themeToggle = document.getElementById("theme-toggle");
+  if (!themeToggle) return;
+
+  const icon = themeToggle.querySelector("i");
+  const text = themeToggle.querySelector(".theme-toggle-text");
+
+  if (isDark) {
+    if (icon) icon.className = "fa-solid fa-sun";
+    if (text) text.textContent = "Claro";
+  } else {
+    if (icon) icon.className = "fa-solid fa-moon";
+    if (text) text.textContent = "Oscuro";
   }
 }
