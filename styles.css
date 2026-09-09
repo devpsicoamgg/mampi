@@ -333,6 +333,48 @@ img {
   pointer-events: none;
 }
 
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -80px;
+  border-radius: 50%;
+  border: 1px solid rgba(198, 161, 91, 0.35);
+  box-shadow: 0 0 12px rgba(198, 161, 91, 0.25), inset 0 0 8px rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(1px);
+  animation: floatBubble var(--duration, 10s) infinite ease-in-out;
+  animation-delay: var(--delay, 0s);
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes floatBubble {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.7);
+    opacity: 0;
+  }
+  15% {
+    opacity: var(--bubble-opacity, 0.5);
+  }
+  50% {
+    transform: translateY(-50vh) translateX(var(--drift, 30px)) scale(1.1);
+    opacity: var(--bubble-opacity, 0.5);
+  }
+  85% {
+    opacity: var(--bubble-opacity, 0.5);
+  }
+  100% {
+    transform: translateY(-115vh) translateX(calc(var(--drift, 30px) * -1)) scale(0.8);
+    opacity: 0;
+  }
+}
+
 .hero-content {
   position: relative;
   z-index: 2;

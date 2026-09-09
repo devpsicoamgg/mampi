@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initMobileMenu();
   initCategoryFilters();
   initFAQAccordion();
+  initBubbles();
 });
 
 /* 1. Navbar Scroll Effect & Active Section Tracking */
@@ -299,5 +300,83 @@ function handleFormSubmit(event) {
             Hemos recibido tu inquietud con respeto y confidencialidad. Nos pondremos en contacto contigo a la brevedad.
         `;
     form.reset();
+  }
+}
+
+/* 7. Efecto de Burbujas Místicas Flotantes */
+function initBubbles() {
+  const container = document.getElementById("hero-particles");
+  if (!container) return;
+
+  const bubbleCount = 28;
+  const colors = [
+    'rgba(198, 161, 91, 0.28)', // Dorado suave
+    'rgba(125, 145, 112, 0.25)', // Verde salvia
+    'rgba(184, 92, 56, 0.22)',   // Terracota
+    'rgba(232, 223, 200, 0.35)'   // Arena / Beige
+  ];
+
+  for (let i = 0; i < bubbleCount; i++) {
+    const bubble = document.createElement('div');
+    bubble.classList.add('bubble');
+
+    const size = Math.floor(Math.random() * 45) + 12; // 12px a 57px
+    const left = Math.random() * 100; // 0% a 100%
+    const duration = Math.random() * 10 + 8; // 8s a 18s
+    const delay = Math.random() * 12; // 0s a 12s
+    const drift = (Math.random() - 0.5) * 80; // drift de -40px a 40px
+    const opacity = (Math.random() * 0.35 + 0.25).toFixed(2);
+    const color = colors[Math.floor(Math.random() * colors.length)];
+
+    bubble.style.width = `${size}px`;
+    bubble.style.height = `${size}px`;
+    bubble.style.left = `${left}%`;
+    bubble.style.setProperty('--duration', `${duration}s`);
+    bubble.style.setProperty('--delay', `${delay}s`);
+    bubble.style.setProperty('--drift', `${drift}px`);
+    bubble.style.setProperty('--bubble-opacity', opacity);
+    bubble.style.background = `radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.65), ${color} 60%, transparent 100%)`;
+
+    container.appendChild(bubble);
+  }
+
+  // Burbujas interactivas al hacer clic en el Hero
+  const heroSection = document.getElementById("hero");
+  if (heroSection) {
+    heroSection.addEventListener("click", (e) => {
+      createInteractiveBubbles(e, container);
+    });
+  }
+}
+
+function createInteractiveBubbles(e, container) {
+  const rect = container.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  for (let i = 0; i < 5; i++) {
+    const bubble = document.createElement('div');
+    bubble.classList.add('bubble');
+
+    const size = Math.floor(Math.random() * 30) + 15;
+    const duration = Math.random() * 3 + 3;
+    const drift = (Math.random() - 0.5) * 70;
+
+    bubble.style.width = `${size}px`;
+    bubble.style.height = `${size}px`;
+    bubble.style.left = `${x + (Math.random() - 0.5) * 50}px`;
+    bubble.style.top = `${y + (Math.random() - 0.5) * 50}px`;
+    bubble.style.bottom = 'auto';
+    bubble.style.setProperty('--duration', `${duration}s`);
+    bubble.style.setProperty('--delay', '0s');
+    bubble.style.setProperty('--drift', `${drift}px`);
+    bubble.style.setProperty('--bubble-opacity', '0.65');
+    bubble.style.background = `radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(198, 161, 91, 0.4) 60%, transparent 100%)`;
+
+    container.appendChild(bubble);
+
+    setTimeout(() => {
+      bubble.remove();
+    }, duration * 1000);
   }
 }
