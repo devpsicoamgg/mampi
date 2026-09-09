@@ -1492,7 +1492,7 @@ img {
 }
 
 /* ==========================================================================
-   ESTILOS ESPECÍFICOS DE COMPONENTES EN MODO OSCURO
+   ESTILOS ESPECÍFICOS DE COMPONENTES EN MODO OSCURO (CONTRASTE OPTIMIZADO)
    ========================================================================== */
 body.dark-theme .navbar {
   background-color: rgba(14, 22, 18, 0.95);
@@ -1503,17 +1503,32 @@ body.dark-theme .navbar.scrolled {
   background-color: rgba(10, 16, 13, 0.98);
 }
 
+body.dark-theme .nav-link,
+body.dark-theme .hero-title,
+body.dark-theme .section-title.light,
+body.dark-theme .logo-text.light {
+  color: #eae3d2;
+}
+
+body.dark-theme .nav-link:hover,
+body.dark-theme .nav-link.active {
+  color: #e5c275;
+}
+
 body.dark-theme .section-subtitle,
 body.dark-theme .card-desc,
 body.dark-theme .pillar p,
 body.dark-theme .badge-text span,
 body.dark-theme .service-card p,
 body.dark-theme .testimonial-text,
-body.dark-theme .faq-answer p {
+body.dark-theme .faq-answer p,
+body.dark-theme .contacto-text,
+body.dark-theme .info-item p {
   color: #c1c9bf;
 }
 
-body.dark-theme .badge-text strong {
+body.dark-theme .badge-text strong,
+body.dark-theme .info-item strong {
   color: #eae3d2;
 }
 
@@ -1527,9 +1542,25 @@ body.dark-theme .service-card.featured {
   border-color: var(--c-soft-gold);
 }
 
+body.dark-theme .card-category,
 body.dark-theme .card-tags span {
-  background-color: rgba(198, 161, 91, 0.15);
+  background-color: rgba(198, 161, 91, 0.18);
   color: var(--c-soft-gold);
+}
+
+body.dark-theme .btn-terracotta {
+  background-color: #e27b52;
+  color: #111a15;
+  font-weight: 700;
+}
+
+body.dark-theme .btn-terracotta:hover {
+  background-color: #f08c63;
+  color: #111a15;
+}
+
+body.dark-theme .form-group label {
+  color: #b2d8c3;
 }
 
 body.dark-theme .form-group input,
@@ -1540,9 +1571,22 @@ body.dark-theme .form-group textarea {
   border-color: #2a3c31;
 }
 
+body.dark-theme .form-group input::placeholder,
+body.dark-theme .form-group textarea::placeholder {
+  color: #92a39b;
+}
+
 body.dark-theme .contacto-form-card {
   background-color: #1a2720;
   color: #eae3d2;
+}
+
+body.dark-theme .footer-disclaimer p {
+  color: rgba(234, 227, 210, 0.75);
+}
+
+body.dark-theme .footer-bottom p {
+  color: rgba(234, 227, 210, 0.85);
 }
 
 body.dark-theme .modal-content {
