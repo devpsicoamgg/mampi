@@ -1,0 +1,12 @@
+# Archivos del sistema y SO
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs y Editores
+.vscode/
+.idea/
+
+# Temporales y logs
+*.log
+node_modules/
